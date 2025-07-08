@@ -1,0 +1,133 @@
+﻿CREATE DATABASE [QuanLyQuanCoffee]
+GO
+
+USE [QuanLyQuanCoffee]
+GO
+
+CREATE TABLE CaLamViec (
+	maCaLV VARCHAR(10)  NOT NULL PRIMARY KEY,
+	tenCaLV NVARCHAR(40) NOT NULL,
+	gioVaoLam TIME NOT NULL,
+	gioKetThuc TIME NOT NULL,
+	luongTheoGio FLOAT NOT NULL
+);
+GO
+
+INSERT INTO CaLamViec (maCaLV, tenCaLV, gioVaoLam, gioKetThuc, luongTheoGio)
+VALUES
+    ('Sang', N'Ca sáng', '06:00:00', '12:00:00', 28),
+	('Chieu', N'Ca chiều', '12:00:00', '18:00:00', 28);
+GO
+
+CREATE TABLE TaiKhoan (
+	tenTK VARCHAR(30) NOT NULL PRIMARY KEY,
+	matKhau VARCHAR(64) NOT NULL
+);
+GO
+
+--Tài khoản mặc định ban đầu
+INSERT INTO TaiKhoan (tenTK, matKhau)
+VALUES
+	('admin', 'admin'),
+	('NV001', '123456');
+GO
+
+CREATE TABLE KhachHang (
+	sdtKH VARCHAR(10) NOT NULL PRIMARY KEY,
+	tenKH NVARCHAR(40) NOT NULL,
+	emailKH VARCHAR(40),
+	diemTL INT NOT NULL
+);
+GO
+
+CREATE TABLE SanPham (
+	maSP VARCHAR(10) NOT NULL PRIMARY KEY,
+	tenSP NVARCHAR(40) NOT NULL,
+	donGiaSP FLOAT NOT NULL,
+	ngayCapNhat DATE NOT NULL,
+	loaiSP NVARCHAR(30) NOT NULL,
+	hinhSP VARBINARY(MAX) NOT NULL
+);
+GO
+
+CREATE TABLE Ban (
+	maBan VARCHAR(10) NOT NULL PRIMARY KEY,
+	soLuongGhe INT NOT NULL,
+	loaiGhe NVARCHAR(10) NOT NULL,
+	khuVuc NVARCHAR(30) NOT NULL
+);
+GO
+
+INSERT INTO Ban (maBan, soLuongGhe, loaiGhe, khuVuc)
+VALUES
+    ('001', 2, N'Thường', N'Tầng trệt'),
+	('002', 4, N'Thường', N'Tầng trệt'),
+	('003', 4, N'VIP', N'Tầng trệt'),
+	('004', 6, N'VIP', N'Tầng trệt'),
+	('005', 2, N'VIP', N'Tầng 1'),
+	('006', 6, N'Thường', N'Tầng 1'),
+	('007', 8, N'VIP', N'Tầng 2');
+GO
+
+CREATE TABLE KhuyenMai (
+	maKM VARCHAR(10) NOT NULL PRIMARY KEY,
+	tenKM NVARCHAR(40) NOT NULL,
+	ngayADKM DATE NOT NULL,
+	ngayKTKM DATE NOT NULL,
+	giaTriKM FLOAT NOT NULL,
+	sdtKH VARCHAR(10) NOT NULL,
+	FOREIGN KEY (sdtKH) REFERENCES [dbo].[KhachHang](sdtKH)
+);
+GO
+
+CREATE TABLE NhanVien (
+	maNV VARCHAR(10) NOT NULL PRIMARY KEY,
+	tenNV NVARCHAR(40) NOT NULL,
+	diaChiNV NVARCHAR(50) NOT NULL,
+	cccdNV VARCHAR(12) NOT NULL,
+	sdtNV VARCHAR(10) NOT NULL,
+	emailNV VARCHAR(40) NOT NULL,
+	ngayBatDauLV DATE NOT NULL,
+	chucVuNV NVARCHAR(40) NOT NULL,
+	doanhThuNV FLOAT NOT NULL,
+	tenTK VARCHAR(30) NOT NULL,
+	FOREIGN KEY (tenTK) REFERENCES [dbo].[TaiKhoan](tenTK)
+);
+GO
+
+CREATE TABLE LichLV (
+	maLichLV VARCHAR(10) NOT NULL PRIMARY KEY,
+	maNV VARCHAR(10) NOT NULL,
+	maCaLV VARCHAR(10) NOT NULL,
+	FOREIGN KEY (maNV) REFERENCES [dbo].[NhanVien](maNV),
+	FOREIGN KEY (maCaLV) REFERENCES [dbo].[CaLamViec](maCaLV)
+);
+GO
+
+CREATE TABLE HoaDon (
+	maHD VARCHAR(10) PRIMARY KEY NOT NULL,
+	ngayLapHD DATETIME NOT NULL,
+	tongTienHD FLOAT NOT NULL,
+	thanhToanHD FLOAT NOT NULL,
+	tienKhachDua FLOAT NOT NULL,
+	tienTraLai FLOAT NOT NULL,
+	maNV VARCHAR(10) NOT NULL,
+	sdtKH VARCHAR(10),
+	maBan VARCHAR(10),
+	maKM VARCHAR(10),
+	FOREIGN KEY (sdtKH) REFERENCES [dbo].[KhachHang](sdtKH),
+	FOREIGN KEY (maBan) REFERENCES [dbo].[Ban](maBan),
+	FOREIGN KEY (maKM) REFERENCES [dbo].[KhuyenMai](maKM),
+	FOREIGN KEY (maNV) REFERENCES [dbo].[NhanVien](maNV)
+);
+GO
+
+CREATE TABLE ChiTietHD (
+	maHD VARCHAR(10) NOT NULL,
+	maSP VARCHAR(10) NOT NULL,
+	soLuongSP INT NOT NULL,
+	thanhTien FLOAT NOT NULL,
+	PRIMARY KEY (maHD, maSP),
+	FOREIGN KEY (maHD) REFERENCES [dbo].[HoaDon](maHD),
+	FOREIGN KEY (maSP) REFERENCES [dbo].[SanPham](maSP)
+);
