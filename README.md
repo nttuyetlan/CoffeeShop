@@ -10,10 +10,37 @@
 - Hóa đơn
 - Quản lý sản phẩm
 - Quản lý hóa đơn
-- Quản khuyến mãi
+- Quản lý khuyến mãi
 - Quản lý thống kê
 - Quản lý nhân viên
 - Quản lý khách hàng
 ## SCREENSHOTS:
 - Đăng nhập
-  
+  <img width="979" height="546" alt="image" src="https://github.com/user-attachments/assets/7b0e9752-b784-445b-9ca8-b136615a5ca7" />
+- Bán hàng
+  <img width="975" height="547" alt="image" src="https://github.com/user-attachments/assets/54603f7f-7401-491d-8fa1-4924aa2a2a47" />
+- Đặt bàn
+  <img width="1005" height="562" alt="image" src="https://github.com/user-attachments/assets/777991fc-638f-4c2a-892b-541314d51b45" />
+- Hóa đơn
+  <img width="1021" height="549" alt="image" src="https://github.com/user-attachments/assets/626830b6-6a89-4da7-bc8e-13bc595b09f7" />
+- Đăng ký thành viên
+  <img width="1008" height="634" alt="image" src="https://github.com/user-attachments/assets/6c26ba15-68b6-4797-9698-a6983dedde82" />
+- Quản lý sản phẩm
+  <img width="1005" height="565" alt="image" src="https://github.com/user-attachments/assets/8731602a-ee30-406c-be0a-4b94052176a2" />
+- Quản lý nhân viên
+  <img width="1007" height="540" alt="image" src="https://github.com/user-attachments/assets/fbb9df56-4c3e-422e-aa1a-0822c1248cb0" />
+- Quản lý khuyến mãi
+  <img width="1010" height="554" alt="image" src="https://github.com/user-attachments/assets/53136832-d22b-461b-9c5f-3a6dcd00962e" />
+- Quản lý thống kê
+  <img width="1007" height="493" alt="image" src="https://github.com/user-attachments/assets/f648c291-f53f-4536-97b4-ca41a529a213" />
+## Môi trường
+[Eclipse IDE](https://www.eclipse.org/downloads/)  
+[Visual Paradigm for UML Enterprise Edition](https://www.visual-paradigm.com/download/)  
+[SQL Server](https://www.microsoft.com/en-us/sql-server/sql-server-downloads) 
+[Figma](https://www.figma.com/)  
+
+
+
+
+
+
